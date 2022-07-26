@@ -18,17 +18,77 @@
         <div class="signIn">
             <h1>Sign Up Page</h1>
             <div class="signinbox">
-                <form>
+                <form onsubmit="event.preventDefault();">
                     <label>Username:</label>
-                    <input type="text" placeholder="Email Id" />
+                    <input type="text" placeholder="Email Id" id="username" />
 
                     <label>Password:</label>
-                    <input type="password" placeholder="password" />
-                    <button>Create Account!</button>
+                    <input type="password" placeholder="password" id="password" />
+                    <button id="btn">Create Account!</button>
                 </form>
             </div>
 
         </div>
+
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyABIQJ4SvcRvnEZDJxO1i4f9WfYo3lXR-0",
+                authDomain: "hackathon-485d6.firebaseapp.com",
+                projectId: "hackathon-485d6",
+                storageBucket: "hackathon-485d6.appspot.com",
+                messagingSenderId: "172156872223",
+                appId: "1:172156872223:web:1713f93461afb7a4d3572a"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            import { getDatabase, set, ref, child, update, remove } from
+                "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+            import { createUserWithEmailAndPassword, getAuth } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js"
+
+            const auth = getAuth();
+            const db = getDatabase();
+
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            var btn = document.getElementById("btn");
+            const HandleRegisterClick = () => {
+                createUserWithEmailAndPassword(auth, username.value, password.value).then(() => {
+                    alert("data entered!");
+                }).catch((err) => {
+                    alert(err.message);
+                })
+            }
+
+            function Insert() {
+                set(ref(db, username.value + "/" + password.value), {
+                    Username: username.value,
+                    Password: password.value
+                }).then(() => {
+                    alert("Data Entered Successfully");
+                }).catch((error) => {
+                    alert(error.message);
+                })
+            }
+
+
+            btn.addEventListener("click", HandleRegisterClick);
+
+
+
+
+
+
+
+        </script>
 </body>
 
 </html>
