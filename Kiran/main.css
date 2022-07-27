@@ -9,12 +9,14 @@ body {
     background-image: linear-gradient(to right bottom, #3f4df5, #006afa, #007ff7, #0090ed, #169fe0);
 }
 
+
 .navbar {
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
-    background-color: #5361FF;
+    background-color: #3f4df5;
+    background-image: linear-gradient(to right bottom, #0418f0, #006afa, #0e82ef);
     color: white;
     border-bottom: 2px solid #fff;
     box-shadow: rgba(9, 43, 209, 0.5) 0px 25px 20px -20px;
@@ -85,14 +87,23 @@ body {
 }
 
 
+.points {
+    margin-left: 35px;
+    text-align: left;
+}
+
+
 .row {
-    border: 1px solid red;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     min-height: 90vh;
     color: white;
 
+}
+
+.big-heading {
+    text-align: center;
 }
 
 .btn_container {
@@ -105,6 +116,15 @@ body {
     border-radius: 15px;
     transition: border 300ms ease-out;
 
+}
+
+#ab>h1 {
+    text-align: left;
+    margin-left: 25px;
+}
+
+.btn_container>h1 {
+    margin-left: -20px;
 }
 
 .btn_container:hover {
@@ -172,7 +192,7 @@ body {
         padding: 10px;
         margin: 10px;
         width: 500px;
-        height: 300px;
+        height: 400px;
         transition: border 300ms ease-in;
         border-radius: 15px;
     }
@@ -181,5 +201,12 @@ body {
         border: 1px solid white;
         box-shadow: rgba(129, 118, 118, 0.265) 0px 13px 27px -5px, rgba(233, 233, 233, 0.3) 0px 8px 16px -8px;
 
+    }
+
+
+    .about-header,
+    .contact-header {
+        text-align: left;
+        transform: translateX(50px);
     }
 }
