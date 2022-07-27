@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/44c44821b1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="chat.css" />
+    <title>Chat System</title>
+</head>
+
+<body>
+    <header class="header">
+        <button class="btn" id="backbutton">Back to Menu</button>
+        <h1>Chat And Protect Each Other!</h1>
+    </header>
+    <div class="chat_container">
+        <ul class="chat_section" id="chat_messages">
+        </ul>
+        <form class="chat_send" onsubmit="event.preventDefault();">
+            <input type="text" placeholder="Start Typing!" id="Chat_input" autocomplete="off" />
+            <button id="btn"> <i class="fa-solid fa-comments"></i></button>
+        </form>
+
+    </div>
+
+
+
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyABIQJ4SvcRvnEZDJxO1i4f9WfYo3lXR-0",
+            authDomain: "hackathon-485d6.firebaseapp.com",
+            projectId: "hackathon-485d6",
+            storageBucket: "hackathon-485d6.appspot.com",
+            messagingSenderId: "172156872223",
+            appId: "1:172156872223:web:1713f93461afb7a4d3572a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import { getDatabase, set, ref, child, update, remove, onChildAdded } from
+            "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+
+
+
+        const db = getDatabase();
+
+
+        var chat_txt = document.getElementById("Chat_input");
+        var timestamp = Date.now();
+        var user = "Hello";
+        var message = "its working";
+
+        const PushChat = () => {
+            var chat_txt = document.getElementById("Chat_input");
+            var message = chat_txt.value;
+            if (chat_txt.value == "") {
+                alert("Type something to chat!");
+                return;
+            }
+
+            var timestamp = Date.now();
+            var user = sessionStorage.getItem("Username");
+            var indexOfa = user.indexOf("@");
+            user = user.substr(0, indexOfa);
+
+            var timestamp = Date.now();
+            console.log("hello world");
+            set(ref(db, "messages/" + timestamp), {
+                usr: user,
+                msg: message,
+            })
+
+            chat_txt.value = "";
+        }
+        const fetch = ref(db, "messages/");
+        onChildAdded(fetch, (snapshot) => {
+            const messages = snapshot.val();
+            var user = sessionStorage.getItem("Username");
+            var indexOfa = user.indexOf("@");
+            user = user.substr(0, indexOfa);
+
+            const message = `<li class=${user == messages.usr ? "sent" : "receive"
+                }><div>${messages.usr}: </div>${messages.msg}</li>`;
+            document.getElementById("chat_messages").innerHTML += message;
+        });
+        document.getElementById("btn").addEventListener("click", PushChat);
+        document.getElementById("Chat_input").addEventListener("keydown", function (e) {
+            console.log(e.key);
+        })
+
+        const handleClick = () => {
+            window.open("MainPage.html", "_self", "false");
+        }
+        var backbutton = document.getElementById("backbutton");
+        backbutton.addEventListener("click", handleClick);
+
+
+
+    </script>
+</body>
+
+</html>

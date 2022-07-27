@@ -11,7 +11,7 @@
 
 <body>
     <div class="image-header">
-        <img src="https://thenounproject.com/icon/womens-network-6235/" alt="Image" class="icon">
+        <img src="./girl-power.png" alt="Image" class="icon">
     </div>
     <div class="SignInPage">
 
@@ -26,6 +26,14 @@
                     <input type="password" placeholder="password" id="password" />
                     <button id="btn">Create Account!</button>
                 </form>
+            </div>
+            <div class="new_user">
+
+                <h4>Already a User?
+                </h4>
+                <button id="btn4">
+                    Sign In
+                </button>
             </div>
 
         </div>
@@ -63,6 +71,7 @@
             const HandleRegisterClick = () => {
                 createUserWithEmailAndPassword(auth, username.value, password.value).then(() => {
                     alert("data entered!");
+                    window.open("SignIn.html", "_self", "false");
                 }).catch((err) => {
                     alert(err.message);
                 })
@@ -74,20 +83,20 @@
                     Password: password.value
                 }).then(() => {
                     alert("Data Entered Successfully");
+                    username.value = "";
+                    password.value = "";
+                    window.open('SignIn.html', '_self', false)
                 }).catch((error) => {
                     alert(error.message);
                 })
             }
 
-
+            const BacktoSignIn = () => {
+                window.open("SignIn.html", "_self", "false");
+            }
             btn.addEventListener("click", HandleRegisterClick);
-
-
-
-
-
-
-
+            var btn3 = document.getElementById("btn4");
+            btn3.addEventListener("click", BacktoSignIn)
         </script>
 </body>
 

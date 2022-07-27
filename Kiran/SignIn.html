@@ -14,7 +14,7 @@
 
 <body>
     <div class="image-header">
-        <img src="https://thenounproject.com/icon/womens-network-6235/" alt="Image" class="icon">
+        <img src="./woman.png" alt="Image" class="signin_icon">
     </div>
     <div class="SignInPage">
         <div class="signIn">
@@ -30,9 +30,9 @@
             </div>
             <div class="new_user">
 
-                <h4>Already a User?
+                <h4>New User?
                 </h4>
-                <button class="btn">
+                <button id="btn3">
                     Create an account
                 </button>
             </div>
@@ -76,6 +76,8 @@
             const HandleClick = () => {
                 signInWithEmailAndPassword(auth, username.value, password.value).then(() => {
                     alert("Verified!");
+                    window.open('MainPage.html', '_self', false)
+                    sessionStorage.setItem("Username", username.value);
                 }).catch((err) => {
                     alert(err.message);
                 })
@@ -88,7 +90,9 @@
                     alert(err.message);
                 })
             }
-
+            const BacktoSignUp = () => {
+                window.open("SignUp.html", "_self", "false");
+            }
             // function Insert() {
             //     set(ref(db, username.value + "/" + password.value), {
             //         Username: username.value,
@@ -100,8 +104,10 @@
             //     })
             // }
 
-
+            var btn3 = document.getElementById("btn3");
             btn.addEventListener("click", HandleClick);
+            btn3.addEventListener("click", BacktoSignUp)
+
 
 
 
