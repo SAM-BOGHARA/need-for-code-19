@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SignUp.css" />
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <div class="image-header">
+        <img src="./girl-power.png" alt="Image" class="icon">
+    </div>
+    <div class="SignInPage">
+
+        <div class="signIn">
+            <h1>Sign Up Page</h1>
+            <div class="signinbox">
+                <form onsubmit="event.preventDefault();">
+                    <label>Username:</label>
+                    <input type="text" placeholder="Email Id" id="username" />
+
+                    <label>Password:</label>
+                    <input type="password" placeholder="password" id="password" />
+                    <button id="btn">Create Account!</button>
+                </form>
+            </div>
+            <div class="new_user">
+
+                <h4>Already a User?
+                </h4>
+                <button id="btn4">
+                    Sign In
+                </button>
+            </div>
+
+        </div>
+
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyABIQJ4SvcRvnEZDJxO1i4f9WfYo3lXR-0",
+                authDomain: "hackathon-485d6.firebaseapp.com",
+                projectId: "hackathon-485d6",
+                storageBucket: "hackathon-485d6.appspot.com",
+                messagingSenderId: "172156872223",
+                appId: "1:172156872223:web:1713f93461afb7a4d3572a"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            import { getDatabase, set, ref, child, update, remove } from
+                "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+            import { createUserWithEmailAndPassword, getAuth } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js"
+
+            const auth = getAuth();
+            const db = getDatabase();
+
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            var btn = document.getElementById("btn");
+            const HandleRegisterClick = () => {
+                createUserWithEmailAndPassword(auth, username.value, password.value).then(() => {
+                    alert("data entered!");
+                    window.open("SignIn.html", "_self", "false");
+                }).catch((err) => {
+                    alert(err.message);
+                })
+            }
+
+            function Insert() {
+                set(ref(db, username.value + "/" + password.value), {
+                    Username: username.value,
+                    Password: password.value
+                }).then(() => {
+                    alert("Data Entered Successfully");
+                    username.value = "";
+                    password.value = "";
+                    window.open('SignIn.html', '_self', false)
+                }).catch((error) => {
+                    alert(error.message);
+                })
+            }
+
+            const BacktoSignIn = () => {
+                window.open("SignIn.html", "_self", "false");
+            }
+            btn.addEventListener("click", HandleRegisterClick);
+            var btn3 = document.getElementById("btn4");
+            btn3.addEventListener("click", BacktoSignIn)
+        </script>
+</body>
+
+</html>

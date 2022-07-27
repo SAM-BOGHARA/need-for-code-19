@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #2fc9f8;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+
+p {
+  color: #f1efef;
+  font-size: 1.2rem;
+}
+
+.big-heading {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  border: 1px solid black;
+}
+
+.container-fluid {
+  padding: 7% 15%;
+  border: 1px solid blue;
+}
+
+.container-icons {
+  padding: 1.2rem 1.2rem;
+  border: 1px solid yellow;
+}
+
+/* Sections */
+.colored-section {
+  background-color: #2fc9f8;
+  color: #fff;
+}
+
+
+.btn_container {
+  border-radius: 12px;
+  transition: border 300ms;
+  border: 1px solid #2fc9f8;
+}
+
+.btn_container:hover {
+  border: 1px solid white;
+}
+
+
+#ab {
+  margin-bottom: 100px;
+  border: 1px solid white;
+}
+
+/* Navigation bar */
+
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* .nav-item {
+  padding: 0 18px;
+} */
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat-Dark";
+}
+
+/* Download buttons */
+/* .download-button {
+  margin: 5% 3% 5% 0%;
+} */
+
+/* Title Image  */
+#title .container-fluid {
+  /* padding: 3% 15% 7%; */
+  text-align: left;
+}
+
+.title-image {
+  width: 60%;
+  transform: rotate(25deg);
+  position: absolute;
+  right: 30%;
+}
+
+
+/* footer */
+
+.footer-icons {
+  color: #f82f4d;
+  margin: 10px 10px;
+}
+
+@media (max-width: 1020px) {
+  #title {
+    text-align: center;
+  }
+
+  .big-heading {
+    text-align: left;
+  }
+
+  .navbar {}
+
+  .title-image {
+    position: static;
+    transform: rotate(0);
+    right: 30%;
+  }
+
+  .btn_container {
+    padding: 10px;
+    margin-top: 100px;
+    border-radius: 12px;
+    transition: border 300ms;
+    border: 1px solid #f82f4d;
+  }
+
+  .btn_container:hover {
+    border: 1px solid white;
+  }
+
+
+  #ab {
+    margin-bottom: 100px;
+    border: 1px solid white;
+  }
+}
